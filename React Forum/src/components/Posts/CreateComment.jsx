@@ -4,24 +4,10 @@ import { addComment } from '../../services/comments.service';
 import AppContext from '../../context/AuthContext';
 import { getAllCommentsForPost } from '../../services/comments.service';
 
-const CreateComment = ({ postId, onCreateComment }) => {
+const CreateComment = ({ postId, comments, onCreateComment }) => {
   const [commentContent, setCommentContent] = useState('');
-  const [postComments, setPostComments] = useState([]);
 
   const { userData } = useContext(AppContext);
-
-  useEffect(() => {
-    const fetchAllComments = async () => {
-      try {
-        const allComments = await getAllCommentsForPost(postId);
-        setPostComments(allComments);
-        console.log('');
-      } catch (error) {
-        console.error('Error fetching comments', error);
-      }
-    };
-    fetchAllComments();
-  }, [postId]);
 
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
@@ -32,7 +18,6 @@ const CreateComment = ({ postId, onCreateComment }) => {
       const newComment = await addComment(postId, author, commentContent);
       setCommentContent('');
       onCreateComment(newComment);
-      setPostComments((prevComments) => [newComment, ...prevComments]);
     } catch (error) {
       console.error('Error adding comment', error);
     }
@@ -48,7 +33,7 @@ const CreateComment = ({ postId, onCreateComment }) => {
         <div className="max-w-2xl px-4 mx-auto">
           <div className="flex items-center justify-between mb-2">
             <h2 className="text-lg font-bold text-gray-900 lg:text-2xl dark:text-white">
-              Comments ({postComments.length})
+              Comments ({comments.length})
             </h2>
           </div>
           <form className="mb-8" onSubmit={handleCommentSubmit}>

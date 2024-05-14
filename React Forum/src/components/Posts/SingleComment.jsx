@@ -95,7 +95,7 @@ const SingleComment = ({ postId, commentId, onDelete }) => {
 
   return (
     <div className="flex justify-center mt-2">
-      <article className="w-1/2 p-4 text-base bg-white border-2 border-gray-100 rounded-lg min-w-1/2 max-w-1/2">
+      <article className="w-full max-w-xl p-4 text-base bg-white border-2 border-gray-100 rounded-lg">
         <footer className="flex items-center justify-between mb-2">
           <div className="flex items-center justify-between">
             <p className="inline-flex items-center mr-3 text-sm font-semibold text-gray-900 dark:text-white">

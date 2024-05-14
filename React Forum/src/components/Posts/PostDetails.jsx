@@ -233,6 +233,7 @@ const PostDetails = () => {
           <div>
             <CreateComment
               postId={postId}
+              comments={comments}
               onCreateComment={handleCommentCreation}
             />
             {comments.length > 0 ? (
