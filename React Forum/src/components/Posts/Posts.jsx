@@ -188,13 +188,17 @@ const Posts = () => {
                       (post) =>
                         post && (
                           <SinglePost
-                            key={post.id}
-                            postId={post.id}
-                            author={post.author}
-                            title={post.title}
-                            createdOn={post.createdOn}
-                            username={post.username}
-                            likes={Object.keys(post.likedBy).length || 0}
+                            key={post?.id}
+                            postId={post?.id}
+                            author={post?.author}
+                            title={post?.title}
+                            createdOn={post?.createdOn}
+                            username={post?.username}
+                            likes={
+                              post?.likedBy
+                                ? Object.keys(post?.likedBy)?.length
+                                : 0
+                            }
                             onDelete={handlePostDeletion}
                           />
                         )
