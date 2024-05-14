@@ -102,22 +102,24 @@ const SinglePost = ({
       {/*<td className="px-6 py-4">{content}</td>*/}
       <td className="px-6 py-4">{formatDate(createdOn)}</td>
       <td className="px-6 py-4">{postComments.length}</td>
-      <td className="px-6 py-4">{likes}</td>
       {userData && (
-        <td className="px-6 py-4">
-          {userData && userData.handle === username ? (
-            <div className="flex">
-              <EditPostButton postId={postId} />
-              <DeletePostButton
-                postId={postId}
-                postUsername={username}
-                onDelete={onDelete}
-              />
-            </div>
-          ) : (
-            <div>N/A</div>
-          )}
-        </td>
+        <>
+          <td className="px-6 py-4">{likes}</td>
+          <td className="px-6 py-4">
+            {userData && userData.handle === username ? (
+              <div className="flex">
+                <EditPostButton postId={postId} />
+                <DeletePostButton
+                  postId={postId}
+                  postUsername={username}
+                  onDelete={onDelete}
+                />
+              </div>
+            ) : (
+              <div>N/A</div>
+            )}
+          </td>
+        </>
       )}
     </tr>
   );

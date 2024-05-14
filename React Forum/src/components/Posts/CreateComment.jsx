@@ -46,12 +46,12 @@ const CreateComment = ({ postId, onCreateComment }) => {
     <>
       <section className="pt-8 antialiased bg-white dark:bg-gray-900">
         <div className="max-w-2xl px-4 mx-auto">
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center justify-between mb-2">
             <h2 className="text-lg font-bold text-gray-900 lg:text-2xl dark:text-white">
               Comments ({postComments.length})
             </h2>
           </div>
-          <form className="mb-6" onSubmit={handleCommentSubmit}>
+          <form className="mb-8" onSubmit={handleCommentSubmit}>
             <div className="px-4 py-2 mb-4 bg-white border border-gray-200 rounded-lg rounded-t-lg dark:bg-gray-800 dark:border-gray-700">
               <label htmlFor="comment" className="sr-only">
                 Your comment

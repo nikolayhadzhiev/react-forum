@@ -139,7 +139,7 @@ const PostDetails = () => {
               marginBottom: '50px',
             }}
           />
-          <div className="w-1/2 px-6 pb-6 bg-white border-2 rounded-lg shadow-md border-gray-150 max-w-80vw ">
+          <div className="w-2/3 px-6 pb-6 bg-white border-2 rounded-lg shadow-md min-w-1/2 border-gray-150 max-w-2/3 ">
             {post ? (
               <>
                 <div className="flex justify-between mt-8 mb-10">

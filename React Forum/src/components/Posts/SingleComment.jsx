@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import {
   deleteComment,
   getCommentById,
@@ -7,13 +7,17 @@ import {
 } from '../../services/comments.service';
 import { imageDb } from '../../config/firebase-config';
 import { getDownloadURL, listAll, ref } from 'firebase/storage';
+import AppContext from '../../context/AuthContext';
 
 const SingleComment = ({ postId, commentId, onDelete }) => {
+  const { userData } = useContext(AppContext);
   const [comment, setComment] = useState('');
   const [isEditMode, setIsEditMode] = useState(false);
   const [editedContent, setEditedContent] = useState('');
   const [imgUrl, setImgUrl] = useState([]);
   const [initials, setInitials] = useState('');
+
+  const fullUserName = `${userData.firstName} ${userData.lastName}`;
 
   useEffect(() => {
     const fetchComment = async () => {
@@ -91,7 +95,7 @@ const SingleComment = ({ postId, commentId, onDelete }) => {
 
   return (
     <div className="flex justify-center mt-2">
-      <article className="p-4 text-base bg-white border-2 border-gray-100 rounded-lg min-w-1/4">
+      <article className="w-1/2 p-4 text-base bg-white border-2 border-gray-100 rounded-lg min-w-1/2 max-w-1/2">
         <footer className="flex items-center justify-between mb-2">
           <div className="flex items-center justify-between">
             <p className="inline-flex items-center mr-3 text-sm font-semibold text-gray-900 dark:text-white">
@@ -112,37 +116,39 @@ const SingleComment = ({ postId, commentId, onDelete }) => {
               {formatDate(comment.createdOn)}
             </p>
           </div>
-          <div className="mb-4 ml-8 dropdown dropdown-right dropdown-center bg-secondary w-fit">
-            <div className="scale-150">
-              <label
+          {fullUserName === comment.author && (
+            <div className="mb-4 ml-8 dropdown dropdown-right dropdown-center bg-secondary w-fit">
+              <div className="scale-150">
+                <label
+                  tabIndex={0}
+                  className="pr-4 text-center border-none rounded-md cursor-pointer text-primary"
+                >
+                  ...
+                </label>
+              </div>
+              <ul
                 tabIndex={0}
-                className="pr-4 text-center border-none rounded-md cursor-pointer text-primary"
+                className="dropdown-content w-32 z-[1] menu shadow bg-primary rounded-box"
               >
-                ...
-              </label>
+                <li>
+                  <button
+                    onClick={handleEdit}
+                    className="block px-4 py-2 hover:bg-gray-100 hover:text-primary dark:hover:bg-gray-600 dark:hover:text-white"
+                  >
+                    Edit
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={handleDelete}
+                    className="block px-4 py-2 hover:bg-gray-100 hover:text-primary dark:hover:bg-gray-600 dark:hover:text-white"
+                  >
+                    Delete
+                  </button>
+                </li>
+              </ul>
             </div>
-            <ul
-              tabIndex={0}
-              className="dropdown-content w-32 z-[1] menu shadow bg-primary rounded-box"
-            >
-              <li>
-                <button
-                  onClick={handleEdit}
-                  className="block px-4 py-2 hover:bg-gray-100 hover:text-primary dark:hover:bg-gray-600 dark:hover:text-white"
-                >
-                  Edit
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={handleDelete}
-                  className="block px-4 py-2 hover:bg-gray-100 hover:text-primary dark:hover:bg-gray-600 dark:hover:text-white"
-                >
-                  Delete
-                </button>
-              </li>
-            </ul>
-          </div>
+          )}
         </footer>
         <div className="text-left text-primary dark:text-gray-400">
           {isEditMode ? (

@@ -140,7 +140,7 @@ const Posts = () => {
             }}
           />
           {posts.length > 0 && (
-            <div className="flex items-start justify-between w-full mb-4 max-w-7xl">
+            <div className="flex items-start justify-between w-full max-w-6xl mb-4">
               <PostsSearchbar
                 onSearch={handlePostsSearch}
                 onReset={handleSearchReset}
@@ -156,7 +156,7 @@ const Posts = () => {
             <p className="text-primary">Loading posts...</p>
           ) : posts.length > 0 ? (
             <>
-              <div className="w-full overflow-x-auto shadow-md max-w-7xl sm:rounded-lg">
+              <div className="w-full max-w-6xl overflow-x-auto shadow-md sm:rounded-lg">
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                   <thead className="text-xs text-white uppercase bg-primary dark:bg-gray-700 dark:text-gray-400">
                     <tr>

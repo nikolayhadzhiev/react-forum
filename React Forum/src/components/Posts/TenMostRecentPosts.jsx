@@ -25,9 +25,9 @@ const TenMostRecentPosts = () => {
 
   return (
     <>
-      <div className="min-h-screen flex flex-col mt-12 mb-12">
+      <div className="flex flex-col min-h-screen mt-12 mb-12">
         <div className="flex flex-col items-center justify-center">
-          <div className="mb-4 text-3xl tracking-tight font-bold text-primary dark:text-white un">
+          <div className="mb-4 text-3xl font-bold tracking-tight text-primary dark:text-white un">
             10 MOST RECENT POSTS
           </div>
           <hr
@@ -38,7 +38,7 @@ const TenMostRecentPosts = () => {
             }}
           />
           {mostRecentPosts.length > 0 ? (
-            <div className="max-w-7xl w-full overflow-x-auto shadow-md sm:rounded-lg">
+            <div className="w-full max-w-6xl overflow-x-auto shadow-md sm:rounded-lg">
               <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead className="text-xs text-white uppercase bg-primary dark:bg-gray-700 dark:text-gray-400">
                   <tr>
