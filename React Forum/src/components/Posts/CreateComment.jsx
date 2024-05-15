@@ -3,6 +3,7 @@ import { useState, useContext, useEffect } from 'react';
 import { addComment } from '../../services/comments.service';
 import AppContext from '../../context/AuthContext';
 import { getAllCommentsForPost } from '../../services/comments.service';
+import { toast } from 'react-toastify';
 
 const CreateComment = ({ postId, comments, onCreateComment }) => {
   const [commentContent, setCommentContent] = useState('');
@@ -10,16 +11,23 @@ const CreateComment = ({ postId, comments, onCreateComment }) => {
   const { userData } = useContext(AppContext);
 
   const handleCommentSubmit = async (e) => {
-    e.preventDefault();
+    if (comments.length <= 5) {
+      e.preventDefault();
 
-    const author = `${userData.firstName} ${userData.lastName}`;
+      const author = `${userData.firstName} ${userData.lastName}`;
 
-    try {
-      const newComment = await addComment(postId, author, commentContent);
-      setCommentContent('');
-      onCreateComment(newComment);
-    } catch (error) {
-      console.error('Error adding comment', error);
+      try {
+        const newComment = await addComment(postId, author, commentContent);
+        setCommentContent('');
+        onCreateComment(newComment);
+      } catch (error) {
+        console.error('Error adding comment', error);
+      }
+    } else {
+      toast.warning("A post can't have more than 5 comments!", {
+        className: 'font-bold',
+        autoClose: 3000,
+      });
     }
   };
 

@@ -50,7 +50,9 @@ const Posts = () => {
   }, []);
 
   const handlePostCreation = (newPost) => {
-    setPosts((prevPosts) => [newPost, ...prevPosts]);
+    if (posts.length <= 10) {
+      setPosts((prevPosts) => [newPost, ...prevPosts]);
+    }
   };
 
   const handlePostDeletion = (postId, postUsername) => {
@@ -244,7 +246,10 @@ const Posts = () => {
         <div className="flex items-center justify-center">
           <div className="w-full mt-10 max-w-1/2">
             {!userData?.isBlocked && (
-              <CreatePost onPostCreate={handlePostCreation} />
+              <CreatePost
+                onPostCreate={handlePostCreation}
+                postsLength={posts.length}
+              />
             )}
           </div>
         </div>

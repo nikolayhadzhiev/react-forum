@@ -12,7 +12,7 @@ import {
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const CreatePost = ({ onPostCreate }) => {
+const CreatePost = ({ onPostCreate, postsLength }) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -20,76 +20,76 @@ const CreatePost = ({ onPostCreate }) => {
   const { userData } = useContext(AppContext);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    if (postsLength <= 10) {
+      e.preventDefault();
 
-    if (!title) {
-      toast.warning('Post title is required!', {
-        autoClose: 3000,
-        className: 'font-bold',
-      });
-      return;
-    }
-
-    if (
-      title.length < POST_TITLE_MIN_LENGTH ||
-      title.length > POST_TITLE_MAX_LENGTH
-    ) {
-      toast.warning(
-        `Post title must contain between ${POST_TITLE_MIN_LENGTH} and ${POST_TITLE_MAX_LENGTH} characters!`,
-        {
+      if (!title) {
+        toast.warning('Post title is required!', {
           autoClose: 3000,
           className: 'font-bold',
-        }
-      );
-      return;
-    }
+        });
+        return;
+      }
 
-    if (!content) {
-      toast.warning('Post content is required!', {
-        autoClose: 3000,
-        className: 'font-bold',
-      });
-      return;
-    }
+      if (
+        title.length < POST_TITLE_MIN_LENGTH ||
+        title.length > POST_TITLE_MAX_LENGTH
+      ) {
+        toast.warning(
+          `Post title must contain between ${POST_TITLE_MIN_LENGTH} and ${POST_TITLE_MAX_LENGTH} characters!`,
+          {
+            autoClose: 3000,
+            className: 'font-bold',
+          }
+        );
+        return;
+      }
 
-    if (
-      content.length < POST_CONTENT_MIN_LENGTH ||
-      content.length > POST_CONTENT_MAX_LENGTH
-    ) {
-      toast.warning(
-        `Post title must contain between ${POST_CONTENT_MIN_LENGTH} and ${POST_CONTENT_MAX_LENGTH} characters!`,
-        {
+      if (!content) {
+        toast.warning('Post content is required!', {
           autoClose: 3000,
           className: 'font-bold',
-        }
-      );
-      return;
-    }
+        });
+        return;
+      }
 
-    const author = `${userData.firstName} ${userData.lastName}`;
-    const username = userData.handle;
+      if (
+        content.length < POST_CONTENT_MIN_LENGTH ||
+        content.length > POST_CONTENT_MAX_LENGTH
+      ) {
+        toast.warning(
+          `Post title must contain between ${POST_CONTENT_MIN_LENGTH} and ${POST_CONTENT_MAX_LENGTH} characters!`,
+          {
+            autoClose: 3000,
+            className: 'font-bold',
+          }
+        );
+        return;
+      }
 
-    setIsLoading(true);
+      const author = `${userData.firstName} ${userData.lastName}`;
+      const username = userData.handle;
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+      setIsLoading(true);
 
-    try {
-      const newPost = await addPost(author, username, title, content);
-      setTitle('');
-      setContent('');
-      onPostCreate(newPost);
-    } catch (error) {
-      console.error('Error creating post:', error);
-    } finally {
-      setIsLoading(false);
+      try {
+        const newPost = await addPost(author, username, title, content);
+        setTitle('');
+        setContent('');
+        onPostCreate(newPost);
+      } catch (error) {
+        console.error('Error creating post:', error);
+      } finally {
+        setIsLoading(false);
+      }
     }
   };
 
   return (
     <>
       <form onSubmit={handleSubmit} className="mb-6 text-primary">
-        <div className="mb-8 flex flex-col items-center">
-          <label className="font-bold mb-2">Title:</label>
+        <div className="flex flex-col items-center mb-8">
+          <label className="mb-2 font-bold">Title:</label>
           <input
             type="text"
             id="title"
@@ -100,8 +100,8 @@ const CreatePost = ({ onPostCreate }) => {
             required
           />
         </div>
-        <div className="mb-6 flex flex-col items-center">
-          <label className="font-bold mb-2">Content:</label>
+        <div className="flex flex-col items-center mb-6">
+          <label className="mb-2 font-bold">Content:</label>
           <textarea
             id="content"
             rows="6"
@@ -115,7 +115,7 @@ const CreatePost = ({ onPostCreate }) => {
         <div className="flex items-center justify-center">
           <button
             type="submit"
-            className="bg-accent text-primary py-2 px-4 rounded-lg font-bold hover:bg-primary hover:text-white"
+            className="px-4 py-2 font-bold rounded-lg bg-accent text-primary hover:bg-primary hover:text-white"
           >
             {isLoading ? 'Creating new post...' : 'Create Post'}
           </button>

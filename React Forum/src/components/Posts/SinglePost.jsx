@@ -85,7 +85,11 @@ const SinglePost = ({
       </th>
       <td className="px-6 py-4">
         <div className="flex items-center">
-          <div className="flex items-center justify-center w-10 h-10 mr-2 rounded-full shadow-2xl bg-primary text-secondary">
+          <div
+            className={`flex items-center justify-center w-12 h-12 mr-2 rounded-full shadow-2xl text-secondary ${
+              imgUrl.length <= 0 && 'bg-primary'
+            }`}
+          >
             {imgUrl.length > 0 ? (
               <img
                 src={imgUrl[0]}

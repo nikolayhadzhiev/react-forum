@@ -148,10 +148,10 @@ const PostDetails = () => {
                       <img
                         src={imgUrl[0]}
                         alt="Profile Avatar"
-                        className="w-12 h-12 mr-2 bg-white rounded-full"
+                        className="object-cover mr-2 bg-white rounded-full w-14 h-14"
                       />
                     ) : (
-                      <span className="text-2xl font-bold pt-1.5 bg-primary text-white rounded-full mr-2 w-12 h-12 text-center">
+                      <span className="text-2xl font-bold pt-1.5 bg-primary text-white rounded-full mr-2 w-14 h-14 text-center">
                         {initials}
                       </span>
                     )}
