@@ -78,7 +78,7 @@ const Posts = () => {
 
   const sortPosts = (sortedPosts) => {
     return sortedPosts.slice().sort((a, b) => {
-      if (sortCriteria === 'title') {
+      if (sortCriteria === 'title' || sortCriteria === 'author') {
         if (sortOrder === 'asc') {
           return a.title.localeCompare(b.title);
         } else {

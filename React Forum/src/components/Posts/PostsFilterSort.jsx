@@ -12,17 +12,18 @@ const PostsFilterSort = ({ onSortChange, sortOrder, sortCriteria }) => {
       <select
         value={sortCriteria}
         onChange={handleSortChange}
-        className="bg-white border-2 border-gray-300 rounded-md px-3 py-1 focus:outline-none"
+        className="px-3 py-1 bg-white border-2 border-gray-300 rounded-md focus:outline-none"
       >
         <option value="createdOn">Created On</option>
         <option value="title">Title</option>
         <option value="comments">Comments</option>
+        <option value="author">Author</option>
       </select>
       <label className="text-gray-700 dark:text-gray-300">Order:</label>
       <select
         value={sortOrder}
         onChange={() => onSortChange(sortCriteria)}
-        className="bg-white border-2 border-gray-300 rounded-md px-3 py-1 focus:outline-none"
+        className="px-3 py-1 bg-white border-2 border-gray-300 rounded-md focus:outline-none"
       >
         <option value="asc">Ascending</option>
         <option value="desc">Descending</option>
