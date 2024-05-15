@@ -160,19 +160,12 @@ export const getLikedPosts = (handle) => {
 };
 
 export const getPostsByAuthor = (handle) => {
-  return get(
-    query(
-      ref(db, 'postsTest'),
-      orderByChild('author'),
-      startAt(handle),
-      endAt(handle + '\uf8ff')
-    )
-  )
+  return get(query(ref(db, 'postsTest')))
     .then((snapshot) => {
       if (!snapshot.exists()) return [];
 
       const postsArray = fromPostsDocument(snapshot);
-      return postsArray.reverse();
+      return postsArray.filter((post) => post.username === handle).reverse();
     })
     .catch((error) => {
       console.error('Error getting posts', error.message);

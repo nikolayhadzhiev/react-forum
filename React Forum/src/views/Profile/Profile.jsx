@@ -47,16 +47,20 @@ const Profile = () => {
   };
 
   return (
-    <div className="p-4 flex flex-col min-h-screen items-center">
-      <div className="flex flex-col relative top-0 min-w-max bg-secondary justify-center align-center shadow shadow-2xl w-96 basis 1/2 rounded-md h-48 border border-primary mb-4">
-        <div className="w-14 rounded-full">
-          <div className="avatar placeholder p-2  items-center">
-            <div className="bg-primary text-secondary border border-primary rounded-full w-14 shadow-2xl">
+    <div className="flex flex-col items-center min-h-screen p-4">
+      <div className="flex flex-col justify-center h-48 px-2 mt-4 space-y-2 border divide-y rounded-md drop-shadow divide-primary/25 min-w-max bg-secondary align-center w-96 basis 1/2">
+        <div className="rounded-full w-14">
+          <div className="items-center p-2 avatar placeholder">
+            <div
+              className={`rounded-full shadow-2xl text-secondary w-14 ${
+                imgUrl.length <= 0 && 'bg-primary'
+              }`}
+            >
               {imgUrl.length > 0 ? (
                 <img
                   src={imgUrl[0]}
                   alt="Profile"
-                  className="w-full h-full object-cover rounded-full"
+                  className="object-cover w-full h-full rounded-full"
                 />
               ) : (
                 <span className="text-2xl font-bold">
@@ -65,31 +69,34 @@ const Profile = () => {
                 </span>
               )}
             </div>
-            <h3 className="text-primary text-xl px-2 whitespace-nowrap">
+            <h3 className="px-2 text-xl font-bold text-primary whitespace-nowrap">
               {userData?.firstName} {userData?.lastName}
             </h3>
           </div>
         </div>
-        <div className="h-0.5 bg-accent mx-2"></div>
-        <div className="bg-secondary w-full max-w-screen-xl">
-          <p className="text-primary text-xl p-2 whitespace-nowrap">
-            created on: {new Date(userData?.createdOn).toLocaleDateString()}
+        <div className="w-full max-w-screen-xl bg-secondary">
+          <p className="p-2 text-base text-primary whitespace-nowrap">
+            Created on:{' '}
+            {new Date(userData?.createdOn).toLocaleString('en', {
+              day: 'numeric',
+              month: 'short',
+              year: 'numeric',
+            })}
           </p>
         </div>
-        <div className="h-0.5 bg-accent mx-2"></div>
-        <div className="bg-secondary w-full max-w-screen-xl">
-          <p className="text-primary text-xl p-2 whitespace-nowrap">
+        <div className="w-full max-w-screen-xl bg-secondary">
+          <p className="p-2 text-base text-primary whitespace-nowrap">
             Posts created: {userPosts.length}
           </p>
         </div>
       </div>
       <div>
         {userData?.role === 'admin' ? (
-          <div className="flex flex-row">
+          <div className="flex flex-row my-8">
             <div>
               <button
                 onClick={handleMyPostsClick}
-                className="btn hover:bg-accent border-none hover:text-primary font-bold min-w-min text-white text-sm w-32 h-10 m-10"
+                className="w-32 h-10 m-2 mt-0 text-sm font-bold normal-case border-none btn bg-accent text-primary hover:text-white hover:bg-primary min-w-min"
               >
                 My Posts
               </button>
@@ -97,14 +104,14 @@ const Profile = () => {
             <div>
               <button
                 onClick={handleUsersClick}
-                className="btn hover:bg-accent border-none hover:text-primary font-bold min-w-min text-white text-sm w-32 h-10 m-10"
+                className="w-32 h-10 m-2 mt-0 text-sm font-bold normal-case border-none btn bg-accent text-primary hover:text-white hover:bg-primary min-w-min"
               >
                 Users
               </button>
             </div>
           </div>
         ) : (
-          <ProfilePosts></ProfilePosts>
+          showMyPosts && <ProfilePosts />
         )}
       </div>
       {showMyPosts && <ProfilePosts />}

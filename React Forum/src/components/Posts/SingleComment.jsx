@@ -96,32 +96,37 @@ const SingleComment = ({ postId, commentId, onDelete }) => {
   return (
     <div className="flex justify-center mt-2">
       <article className="w-full max-w-xl p-4 text-base bg-white border-2 border-gray-100 rounded-lg">
-        <footer className="flex items-center justify-between mb-2">
+        <footer className="flex items-start justify-between mb-2">
           <div className="flex items-center justify-between">
-            <p className="inline-flex items-center mr-3 text-sm font-semibold text-gray-900 dark:text-white">
+            <div className="inline-flex items-center text-sm font-semibold">
               {imgUrl.length > 0 ? (
                 <img
-                  className="w-8 h-8 mr-2 rounded-full"
+                  className="w-12 h-12 mr-4 rounded-full"
                   src={imgUrl[0]}
                   alt="Comment Author Avatar"
                 />
               ) : (
-                <span className="flex items-center justify-center w-10 h-10 text-xl font-bold border rounded-full bg-primary text-secondary border-secondary">
+                <span className="flex items-center justify-center w-12 h-12 mr-4 text-lg font-bold border rounded-full bg-primary text-secondary border-secondary">
                   {initials}
                 </span>
               )}
-              <span className="ml-2">{comment.author}</span>
-            </p>
-            <p className="text-sm text-gray-600">
-              {formatDate(comment.createdOn)}
-            </p>
+              <div className="flex flex-col items-start justify-start">
+                <span className="text-lg font-bold text-primary">
+                  {comment.author}
+                </span>
+
+                <p className="text-sm font-normal text-primary/50">
+                  {formatDate(comment.createdOn)}
+                </p>
+              </div>
+            </div>
           </div>
           {fullUserName === comment.author && (
             <div className="mb-4 ml-8 dropdown dropdown-right dropdown-center bg-secondary w-fit">
-              <div className="scale-150">
+              <div className="flex items-start justify-center scale-150">
                 <label
                   tabIndex={0}
-                  className="pr-4 text-center border-none rounded-md cursor-pointer text-primary"
+                  className="px-2 text-center border-none rounded-md cursor-pointer text-primary"
                 >
                   ...
                 </label>
@@ -133,7 +138,7 @@ const SingleComment = ({ postId, commentId, onDelete }) => {
                 <li>
                   <button
                     onClick={handleEdit}
-                    className="block px-4 py-2 hover:bg-gray-100 hover:text-primary dark:hover:bg-gray-600 dark:hover:text-white"
+                    className="block px-4 py-2 text-white hover:bg-gray-100 hover:text-primary dark:hover:bg-gray-600 dark:hover:text-white"
                   >
                     Edit
                   </button>
@@ -141,7 +146,7 @@ const SingleComment = ({ postId, commentId, onDelete }) => {
                 <li>
                   <button
                     onClick={handleDelete}
-                    className="block px-4 py-2 hover:bg-gray-100 hover:text-primary dark:hover:bg-gray-600 dark:hover:text-white"
+                    className="block px-4 py-2 text-white hover:bg-gray-100 hover:text-primary dark:hover:bg-gray-600 dark:hover:text-white"
                   >
                     Delete
                   </button>
@@ -157,19 +162,20 @@ const SingleComment = ({ postId, commentId, onDelete }) => {
               rows="6"
               value={editedContent}
               onChange={(e) => setEditedContent(e.target.value)}
-              className="w-full px-2 text-sm font-bold border rounded resize-none text-primary border-primary focus:ring-0 focus:outline-none bg-secondary"
+              className="w-full p-2 px-4 text-sm font-bold border rounded resize-none text-primary border-primary focus:ring-0 focus:outline-none bg-secondary"
               placeholder="Write a comment..."
               required
             ></textarea>
           ) : (
-            <p className="mt-4 ml-2">{comment.content}</p>
+            <p className="mt-4 mb-2 ml-16 text-base">{comment.content}</p>
           )}
         </div>
-        <div className="flex items-center mt-4 space-x-4 justify-left">
-          {isEditMode && (
+
+        {isEditMode && (
+          <div className="flex items-center mt-4 space-x-4 justify-left">
             <button
               onClick={handleSave}
-              className="flex items-center text-sm font-medium text-gray-500 hover:underline dark:text-gray-400"
+              className="flex items-center text-sm font-medium text-primary hover:underline dark:text-secondary"
             >
               <svg
                 className="mr-1.5 w-3.5 h-3.5"
@@ -188,8 +194,8 @@ const SingleComment = ({ postId, commentId, onDelete }) => {
               </svg>
               Save
             </button>
-          )}
-        </div>
+          </div>
+        )}
       </article>
     </div>
   );

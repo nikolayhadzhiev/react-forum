@@ -127,7 +127,7 @@ const PostDetails = () => {
 
   return (
     <>
-      <div className="flex flex-col min-h-screen mt-12 mb-12">
+      <div className="flex flex-col min-h-screen my-12">
         <div className="flex flex-col items-center justify-center">
           <div className="mb-4 text-3xl font-bold tracking-tight text-primary dark:text-white un">
             POST DETAILS
@@ -143,7 +143,7 @@ const PostDetails = () => {
             {post ? (
               <>
                 <div className="flex justify-between mt-8 mb-10">
-                  <div className="flex items-center">
+                  <div className="flex items-center justify-center">
                     {imgUrl.length > 0 ? (
                       <img
                         src={imgUrl[0]}
@@ -151,7 +151,7 @@ const PostDetails = () => {
                         className="object-cover mr-2 bg-white rounded-full w-14 h-14"
                       />
                     ) : (
-                      <span className="text-2xl font-bold pt-1.5 bg-primary text-white rounded-full mr-2 w-14 h-14 text-center">
+                      <span className="flex items-center justify-center mr-2 text-2xl font-bold text-center text-white rounded-full bg-primary w-14 h-14">
                         {initials}
                       </span>
                     )}
@@ -189,8 +189,10 @@ const PostDetails = () => {
                   <p className="text-primary">{post.content}</p>
                 </div>
                 <div className="mb-4">
-                  <p className="font-bold text-primary">Last update: </p>
-                  <p>
+                  <p className="text-lg font-bold text-primary">
+                    Last update:{' '}
+                  </p>
+                  <p className="text-sm text-primary/50">
                     {post.lastUpdated
                       ? formatDate(post.lastUpdated)
                       : formatDate(post.createdOn)}

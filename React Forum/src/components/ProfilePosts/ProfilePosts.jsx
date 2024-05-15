@@ -13,6 +13,7 @@ const ProfilePosts = () => {
       getPostsByAuthor(userData.handle)
         .then((posts) => {
           setUserPosts(posts);
+          console.log(posts);
         })
         .catch((error) => {
           console.error('Error getting posts', error.message);
@@ -20,10 +21,18 @@ const ProfilePosts = () => {
     }
   }, [userData?.handle]);
 
+  const handlePostDeletion = (postId, postUsername) => {
+    if (userData.handle === postUsername || userData.role === 'admin') {
+      setUserPosts((prevPosts) =>
+        prevPosts.filter((post) => post.id !== postId)
+      );
+    }
+  };
+
   return (
-    <div className="justify-center relative align-center bg-secondary shadow shadow-2xl text-primary rounded-md px-42 mx-48 border border-primary max-h-max w-max">
-      <table>
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <div className="w-full max-w-6xl overflow-x-auto shadow-md sm:rounded-lg">
+      <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead className="text-xs text-white uppercase bg-primary dark:bg-gray-700 dark:text-gray-400">
           <tr>
             <th scope="col" className="px-6 py-3">
               Title
@@ -31,14 +40,14 @@ const ProfilePosts = () => {
             <th scope="col" className="px-6 py-3">
               Author
             </th>
-            {/* <th scope="col" className="px-6 py-3">
-                        Content
-                      </th>*/}
             <th scope="col" className="px-6 py-3">
               Created On
             </th>
             <th scope="col" className="px-6 py-3">
               Comments
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Likes
             </th>
             <th scope="col" className="px-6 py-3">
               Actions
@@ -54,18 +63,12 @@ const ProfilePosts = () => {
               title={post.title}
               createdOn={post.createdOn}
               username={post.username}
-              // onDelete={handlePostDeletion}
+              likes={post?.likedBy ? Object.keys(post?.likedBy)?.length : 0}
+              onDelete={handlePostDeletion}
             />
           ))}
         </tbody>
       </table>
-      <div
-        style={{
-          borderBottom: '2px solid #0A2A4C',
-          paddingLeft: '10px',
-          paddingRight: '10px',
-        }}
-      ></div>
     </div>
   );
 };

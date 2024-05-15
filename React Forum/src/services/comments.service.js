@@ -1,13 +1,14 @@
 import { ref, push, get, update, remove, set } from 'firebase/database';
 import { db } from '../config/firebase-config';
 
-export const addComment = async (postId, author, content) => {
+export const addComment = async (postId, author, content, username) => {
   try {
     const commentsRef = ref(db, `commentsTest/${postId}`);
     const newCommentRef = push(commentsRef, {
       author,
       content,
       createdOn: Date.now(),
+      username,
     });
 
     const commentId = newCommentRef.key;

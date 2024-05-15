@@ -1,21 +1,21 @@
-import AppContext from "../../context/AuthContext";
-import { useContext, useEffect, useState } from "react";
+import AppContext from '../../context/AuthContext';
+import { useContext, useEffect, useState } from 'react';
 import {
   blockUser,
   getAllUsers,
   makeUserAdmin,
   revokeUserAdminFunctions,
   unblockUser,
-} from "../../services/users.service";
-import { listAll, ref, getDownloadURL } from "firebase/storage";
-import { imageDb } from "../../config/firebase-config";
+} from '../../services/users.service';
+import { listAll, ref, getDownloadURL } from 'firebase/storage';
+import { imageDb } from '../../config/firebase-config';
 // import { format } from 'date-fns';
 
 const ProfileUsers = () => {
   const { userData } = useContext(AppContext);
   const [users, setUsers] = useState([]);
   const [imgUrl, setImgUrl] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     listAll(ref(imageDb, `Profile pictures`)).then((images) => {
@@ -33,16 +33,16 @@ const ProfileUsers = () => {
 
     if (!isNaN(date.getTime())) {
       const options = {
-        weekday: "long",
-        day: "numeric",
-        month: "numeric",
-        year: "numeric",
-        hour: "numeric",
-        minute: "numeric",
+        weekday: 'long',
+        day: 'numeric',
+        month: 'numeric',
+        year: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
       };
-      return date.toLocaleDateString("en-UK", options);
+      return date.toLocaleDateString('en-UK', options);
     } else {
-      return "Invalid Date";
+      return 'Invalid Date';
     }
   };
 
@@ -108,17 +108,18 @@ const ProfileUsers = () => {
         user.phoneNumber.includes(searchTerm) ||
         user.email.includes(searchTerm) ||
         user.handle.includes(searchTerm) ||
-        `${user.firstName} ${user.lastName}`.toLowerCase().includes(searchTerm.toLowerCase())
+        `${user.firstName} ${user.lastName}`
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase())
       );
     }
     return true;
   });
 
-
   return (
-    <div className="flex flex-col items-center justify-center bg-secondary shadow shadow-2xl text-primary rounded-md px-42 mx-48 border border-primary max-h-max w-max">
+    <>
       {/* Search bar */}
-      <div className="bg-white mr-2">
+      <div className="mb-4 bg-white">
         <label htmlFor="table-search" className="sr-only">
           Search
         </label>
@@ -150,130 +151,128 @@ const ProfileUsers = () => {
           />
         </div>
       </div>
-
-      {/* Table with the users */}
-      <table>
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-          <tr>
-            <th>Profile Picture</th>
-            <th scope="col" className="px-6 py-3">
-              Name
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Username
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Email
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Phone Number
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Created On
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Liked Posts
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Actions
-            </th>
-          </tr>
-        </thead>
-        <tbody className="shadow shadow-2xl items-center justify-between">
-          {filteredUsers.map((user) => (
-            <tr
-              key={user.id}
-              className={
-                user.isBlocked
-                  ? "bg-error"
-                  : user.role === "admin"
-                  ? "bg-success"
-                  : "bg-white"
-              }
-            >
-              <td className="w-max h-14 border border-primary  items-center justify-center">
-                {imgUrl.some((item) => item.photoName === user.handle) ? (
-                  <img
-                    src={
-                      imgUrl.find((item) => item.photoName === user.handle)?.url
+      <div className="flex flex-col items-center justify-center max-w-6xl mx-48 mb-10 border rounded-md shadow-2xl bg-secondary text-primary px-42 border-primary max-h-max">
+        {/* Table with the users */}
+        <div className="w-full max-w-6xl overflow-x-auto shadow-md sm:rounded-lg">
+          <table className="w-full text-sm text-left text-primary">
+            <thead className="text-xs text-white uppercase bg-primary dark:bg-gray-700 dark:text-gray-400">
+              <tr>
+                <th scope="col" className="px-6 py-3">
+                  Avatar
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Name
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Username
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Email
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Created On
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Liked Posts
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Actions
+                </th>
+              </tr>
+            </thead>
+            <tbody className="items-center justify-between shadow-2xl">
+              {filteredUsers.map((user) => (
+                <tr
+                  key={user.id}
+                  className={
+                    user.isBlocked
+                      ? 'bg-red-100'
+                      : user.role === 'admin'
+                      ? 'bg-green-100'
+                      : 'bg-white'
+                  }
+                >
+                  <td className="px-6 py-4">
+                    <div className="grid items-center justify-center w-12 h-12 place-content-center">
+                      {imgUrl.some((item) => item.photoName === user.handle) ? (
+                        <img
+                          src={
+                            imgUrl.find(
+                              (item) => item.photoName === user.handle
+                            )?.url
+                          }
+                          alt={`Profile Avatar for ${user.firstName} ${user.lastName}`}
+                          className="object-cover w-12 h-12 rounded-full"
+                        />
+                      ) : (
+                        <span className="w-12 h-12 p-2 text-xl font-bold text-center text-white rounded-full bg-primary">
+                          {user.firstName[0]}
+                          {user.lastName[0]}
+                        </span>
+                      )}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4">{`${user.firstName} ${user.lastName}`}</td>
+                  <td className="px-6 py-4">{`${user.handle}`}</td>
+                  <td className="px-6 py-4">{user.email}</td>
+                  <td className="px-6 py-4">{formatDate(user.createdOn)}</td>
+                  <td className="px-6 py-4">
+                    {
+                      Object.values(user.likedPosts ?? {}).filter(
+                        (value) => value
+                      ).length
                     }
-                    alt={`Profile Avatar for ${user.firstName} ${user.lastName}`}
-                    className="w-14 h-14 rounded-full border border-primary"
-                  />
-                ) : (
-                  <span className="text-2xl text-center font-bold p-2 rounded-full border border-primary w-14 h-14 bg-secondary">
-                    {user.firstName[0]}
-                    {user.lastName[0]}
-                  </span>
-                )}
-              </td>
-              <td className="border border-primary w-full text-center">{`${user.firstName} ${user.lastName}`}</td>
-              <td className="border border-primary w-full text-center">{`${user.handle}`}</td>
-              <td className="border border-primary w-full text-center">
-                {user.email}
-              </td>
-              <td className="border border-primary w-full text-center">
-                {user.phoneNumber}
-              </td>
-              <td className="border border-primary w-full text-center">
-                {formatDate(user.createdOn)}
-              </td>
-              <td className="border border-primary w-full text-center">
-                {
-                  Object.values(user.likedPosts ?? {}).filter((value) => value)
-                    .length
-                }
-              </td>
-              <td className="border border-primary w-max min-w-60 h-16 items-center justify-center">
-                {userData.handle === user.handle ? (
-                  <p className="text-center w-60 min-w-96">My Account</p>
-                ) : (
-                  <div className="flex flex-row w-max min-w-60">
-                    {user.role === "admin" && !user.isBlocked ? (
-                      <>
-                        <button
-                          className="btn btn-primary border-primary mx-2 bg-red-600 text-secondary"
-                          onClick={() => handleRevoke(user)}
-                        >
-                          Revoke Admin
-                        </button>
-                        <p className="text-3xl">|</p>
-                      </>
-                    ) : !user.isBlocked ? (
-                      <>
-                        <button
-                          className="btn btn-primary border-primary mx-2 bg-green-600 text-secondary"
-                          onClick={() => handleAdmin(user)}
-                        >
-                          Make Admin
-                        </button>
-                        <p className="text-3xl">|</p>
-                      </>
-                    ) : null}
-
-                    {user.isBlocked ? (
-                      <button
-                        className="btn btn-primary border-primary mx-2 bg-green-600 text-secondary"
-                        onClick={() => handleUnblock(user)}
-                      >
-                        Unblock
-                      </button>
+                  </td>
+                  <td className="px-6 py-4">
+                    {userData.handle === user.handle ? (
+                      <p className="font-bold uppercase">My Account</p>
                     ) : (
-                      <button
-                        className="btn btn-primary border-primary mx-2 bg-red-600 text-secondary"
-                        onClick={() => handleBlock(user)}
-                      >
-                        Block
-                      </button>
+                      <div className="flex flex-row text-xs">
+                        {user.role === 'admin' && !user.isBlocked ? (
+                          <>
+                            <button
+                              className="inline-flex items-center px-4 py-2 ml-4 font-bold text-white uppercase bg-red-600 rounded-lg hover:scale-105"
+                              onClick={() => handleRevoke(user)}
+                            >
+                              Revoke Admin
+                            </button>
+                          </>
+                        ) : !user.isBlocked ? (
+                          <>
+                            <button
+                              className="inline-flex items-center justify-center w-24 px-4 py-2 font-bold text-white uppercase bg-green-600 rounded-lg hover:scale-105"
+                              onClick={() => handleAdmin(user)}
+                            >
+                              Make Admin
+                            </button>
+                          </>
+                        ) : null}
+
+                        {user.isBlocked ? (
+                          <button
+                            className="inline-flex items-center justify-center w-24 px-4 py-2 font-bold text-white uppercase bg-green-600 rounded-lg hover:scale-105"
+                            onClick={() => handleUnblock(user)}
+                          >
+                            Unblock
+                          </button>
+                        ) : (
+                          <button
+                            className="inline-flex items-center px-4 py-2 ml-4 font-bold text-white uppercase bg-red-600 rounded-lg hover:scale-105"
+                            onClick={() => handleBlock(user)}
+                          >
+                            Block
+                          </button>
+                        )}
+                      </div>
                     )}
-                  </div>
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </>
   );
 };
 

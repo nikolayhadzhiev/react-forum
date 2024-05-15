@@ -17,7 +17,12 @@ const CreateComment = ({ postId, comments, onCreateComment }) => {
       const author = `${userData.firstName} ${userData.lastName}`;
 
       try {
-        const newComment = await addComment(postId, author, commentContent);
+        const newComment = await addComment(
+          postId,
+          author,
+          commentContent,
+          userData.handle
+        );
         setCommentContent('');
         onCreateComment(newComment);
         toast.success('Comment was added successfully!', {
@@ -44,10 +49,10 @@ const CreateComment = ({ postId, comments, onCreateComment }) => {
 
   return (
     <>
-      <section className="pt-8 antialiased bg-white dark:bg-gray-900">
+      <section className="mt-8 antialiased bg-white dark:bg-gray-900">
         <div className="max-w-2xl px-4 mx-auto">
           <div className="flex items-center justify-between mb-2">
-            <h2 className="text-lg font-bold text-gray-900 lg:text-2xl dark:text-white">
+            <h2 className="text-lg font-bold text-primary lg:text-2xl dark:text-white">
               Comments ({comments.length})
             </h2>
           </div>
