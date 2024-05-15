@@ -49,33 +49,30 @@ export default function NavBar() {
 
   return (
     <>
-      <nav className="navigation bg-white flex justify-between items-center shadow-md">
-        <div
-          className="navbar bg-white
-       flex items-center justify-between w-full max-w-screen-full mx-auto p-4"
-        >
+      <nav className="flex items-center justify-between bg-white shadow-md navigation">
+        <div className="flex items-center justify-between w-full p-4 mx-auto bg-white navbar max-w-screen-full">
           <NavLink to="/home">
-            <div className="Logo flex flex-col items-center ml-4">
-              <p className="text-primary text-5xl tracking-tight font-extrabold">
+            <div className="flex flex-col items-center ml-4 Logo">
+              <p className="text-5xl font-extrabold tracking-tight text-primary">
                 REACT
               </p>
-              <p className="line-through text-primary text-2xl tracking-wide font-light">
+              <p className="text-2xl font-light tracking-wide line-through text-primary">
                 IS NOT HARD
               </p>
             </div>
           </NavLink>
-          {/*<div className="form-control w-4/12">
+          {/*<div className="w-4/12 form-control">
             <input
               type="text"
               placeholder="Search"
-              className="input input-bordered border-primary border-2 w-full bg-white"
+              className="w-full bg-white border-2 input input-bordered border-primary"
             />
           </div>*/}
-          <div className="text-xl navigation-menu flex gap-4 items-center">
+          <div className="flex items-center gap-4 text-xl navigation-menu">
             <>
               <NavLink
                 to="/home"
-                className="nav-link font-bold text-primary hover:bg-primary hover:text-white p-2 rounded-md tracking-wide"
+                className="p-2 font-bold tracking-wide rounded-md nav-link text-primary hover:bg-primary hover:text-white"
               >
                 HOME
               </NavLink>
@@ -84,7 +81,7 @@ export default function NavBar() {
             {user !== null ? (
               <NavLink
                 to="/posts"
-                className="nav-link font-bold text-primary hover:bg-primary hover:text-white p-2 rounded-md tracking-wide"
+                className="p-2 font-bold tracking-wide rounded-md nav-link text-primary hover:bg-primary hover:text-white"
               >
                 POSTS
               </NavLink>
@@ -92,14 +89,14 @@ export default function NavBar() {
               <>
                 <NavLink
                   to="/10-most-commented-posts"
-                  className="nav-link font-bold text-primary hover:bg-primary hover:text-white p-2 rounded-md tracking-wide"
+                  className="p-2 font-bold tracking-wide rounded-md nav-link text-primary hover:bg-primary hover:text-white"
                 >
                   10 MOST COMMENTED POSTS
                 </NavLink>
                 |
                 <NavLink
                   to="/10-most-recent-posts"
-                  className="nav-link font-bold text-primary hover:bg-primary hover:text-white p-2 rounded-md tracking-wide"
+                  className="p-2 font-bold tracking-wide rounded-md nav-link text-primary hover:bg-primary hover:text-white"
                 >
                   10 MOST RECENT POSTS
                 </NavLink>
@@ -109,23 +106,23 @@ export default function NavBar() {
               |
               <NavLink
                 to="/about"
-                className="nav-link font-bold text-primary hover:bg-primary hover:text-white p-2 rounded-md tracking-wide"
+                className="p-2 font-bold tracking-wide rounded-md nav-link text-primary hover:bg-primary hover:text-white"
               >
                 ABOUT
               </NavLink>
             </>
           </div>
-          <div className="navigation-menu flex gap-2 items-center">
+          <div className="flex items-center gap-2 navigation-menu">
             <div className="dropdown dropdown-end">
-              <label tabIndex={0} className="btn-circle cursor-pointer">
-                <div className="text-secondary flex items-center justify-center rounded-full">
+              <label tabIndex={0} className="cursor-pointer btn-circle">
+                <div className="flex items-center justify-center rounded-full text-secondary">
                   {user === null ? (
-                    <GiHamburgerMenu className="text-primary scale-150 mr-4" />
+                    <GiHamburgerMenu className="mr-4 scale-150 text-primary" />
                   ) : imgUrl.length > 0 ? (
                     <img
                       src={imgUrl[0]}
                       alt="Profile Avatar"
-                      className="bg-white w-14 h-14 rounded-full mr-2"
+                      className="object-cover mr-2 bg-white rounded-full w-14 h-14"
                     />
                   ) : (
                     <span className="text-2xl font-bold pt-2.5 bg-primary text-white rounded-full w-14 h-14 text-center mr-4">
@@ -138,7 +135,7 @@ export default function NavBar() {
               <ul className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-white rounded-box w-60 flex flex-col items-center">
                 <li className="mb-2">
                   {user !== null && (
-                    <p className="font-bold mb-5 text-primary hover:bg-white hover:text-primary tracking-wide">
+                    <p className="font-bold tracking-wide text-primary hover:bg-white hover:text-primary">
                       {userData?.firstName} {userData?.lastName}
                     </p>
                   )}
@@ -146,7 +143,7 @@ export default function NavBar() {
                 {user !== null && (
                   <NavLink to="/profile">
                     <li className="mb-2">
-                      <p className="text-primary justify-between hover:bg-white hover:text-primary hover:underline tracking-wide">
+                      <p className="justify-between tracking-wide text-primary hover:bg-white hover:text-primary hover:underline">
                         Profile
                       </p>
                     </li>
@@ -155,7 +152,7 @@ export default function NavBar() {
                 {user !== null && (
                   <NavLink to="/settings">
                     <li className="mb-2">
-                      <p className="text-primary justify-between hover:bg-white hover:text-primary hover:underline">
+                      <p className="justify-between text-primary hover:bg-white hover:text-primary hover:underline">
                         Settings
                       </p>
                     </li>
@@ -165,14 +162,14 @@ export default function NavBar() {
                   <div className="justify-between">
                     {user === null && (
                       <NavLink to="/register" className="navigation-link">
-                        <button className="btn hover:bg-accent border-none hover:text-primary font-bold min-w-min text-white text-sm w-24 h-10">
+                        <button className="w-24 h-10 text-sm font-bold text-white border-none btn hover:bg-accent hover:text-primary min-w-min">
                           Sign Up
                         </button>
                       </NavLink>
                     )}
                     {user === null && (
                       <NavLink to="/signin" className="navigation-link">
-                        <button className="btn hover:bg-accent border-none hover:text-primary font-bold min-w-min text-white text-sm w-24 h-10">
+                        <button className="w-24 h-10 text-sm font-bold text-white border-none btn hover:bg-accent hover:text-primary min-w-min">
                           Log In
                         </button>
                       </NavLink>
@@ -184,7 +181,7 @@ export default function NavBar() {
                       className="navigation-link"
                       onClick={onLogout}
                     >
-                      <button className="btn hover:bg-accent border-none hover:text-primary font-bold min-w-min text-white text-sm w-24 h-10">
+                      <button className="w-24 h-10 text-sm font-bold text-white border-none btn hover:bg-accent hover:text-primary min-w-min bg-primary">
                         Log Out
                       </button>
                     </NavLink>

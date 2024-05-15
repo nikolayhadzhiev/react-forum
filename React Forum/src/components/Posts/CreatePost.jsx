@@ -82,6 +82,11 @@ const CreatePost = ({ onPostCreate, postsLength }) => {
       } finally {
         setIsLoading(false);
       }
+    } else {
+      toast.warning("Can't create more than 10 posts!", {
+        className: 'font-bold',
+        autoClose: 3000,
+      });
     }
   };
 
