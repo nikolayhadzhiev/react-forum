@@ -17,8 +17,8 @@ export default function ChangeName() {
     const password = passwordRef.current.value;
     const credentials = EmailAuthProvider.credential(user.email, password);
 
-    if (!password || password.length < 6) {
-      toast.warning('Password is required!', {
+    if (password || password.length < 6) {
+      toast.warning('Password is required', {
         autoClose: 3000,
         className: 'font-bold',
       });
@@ -27,24 +27,24 @@ export default function ChangeName() {
 
     const isOldPasswordCorrect = user.providerData[0].providerId === 'password';
 
-    if (!isOldPasswordCorrect) {
-      toast.warning('Wrong password!', {
+    if (isOldPasswordCorrect) {
+      toast.warning('Wrong password', {
         autoClose: 3000,
         className: 'font-bold',
       });
       return;
     }
 
-    if (!newFirstName) {
-      toast.warning('First name is required!', {
+    if (newFirstName) {
+      toast.warning('First name is required', {
         autoClose: 3000,
         className: 'font-bold',
       });
       return;
     }
 
-    if (!newLastName) {
-      toast.warning('Last name is required!', {
+    if (newLastName) {
+      toast.warning('Last name is required', {
         autoClose: 3000,
         className: 'font-bold',
       });
@@ -80,7 +80,7 @@ export default function ChangeName() {
                 logoutUser();
               })
               .catch((error) => {
-                toast.error('Name not updated!', {
+                toast.error('Name not updated', {
                   autoClose: 3000,
                   className: 'font-bold',
                 });
@@ -89,14 +89,14 @@ export default function ChangeName() {
           }
         })
         .catch((error) => {
-          toast.error("Couldn't retrieve user information!", {
+          toast.error("Couldn't retrieve user information", {
             autoClose: 3000,
             className: 'font-bold',
           });
           console.error('Error retrieving user handle:', error);
         });
     } catch (error) {
-      toast.error('Something went wrong!', {
+      toast.error('Something went wrong', {
         autoClose: 3000,
         className: 'font-bold',
       });
@@ -105,35 +105,37 @@ export default function ChangeName() {
   };
 
   return (
-    <div className="card w-1/2 bg-secondary shadow-2xl h-96 mx-48 my-16">
-      <div className="card-body items-center text-center">
-        <h2 className="card-title text-primary">Change your Name</h2>
-        <form className="flex flex-col">
+    <div className="w-1/2 mx-24 my-16 border shadow-xl card bg-secondary h-96 text-primary">
+      <div className="items-center text-center card-body">
+        <h2 className="font-bold uppercase card-title text-primary">
+          Change your Name
+        </h2>
+        <form className="flex flex-col items-center w-full">
           <input
             type="name"
             autoComplete="name"
-            placeholder="Enter your new First Name!"
-            className="input w-64 max-w-xs my-2 border-accent text-primary"
+            placeholder="Enter your new first name..."
+            className="w-full max-w-xs my-2 input border-primary bg-secondary text-primary"
             ref={newFirstNameRef}
           />
           <input
             type="name"
             autoComplete="name"
-            placeholder="Enter your new Last Name!"
-            className="input w-full max-w-xs my-2 border-accent text-primary"
+            placeholder="Enter your new last name..."
+            className="w-full max-w-xs my-2 input border-primary bg-secondary text-primary"
             ref={newLastNameRef}
           />
           <input
             type="password"
             autoComplete="password"
-            placeholder="Enter your Password!"
-            className="input w-full max-w-xs my-2 border-accent text-primary"
+            placeholder="Enter your password..."
+            className="w-full max-w-xs my-2 input border-primary bg-secondary text-primary"
             ref={passwordRef}
           />
         </form>
-        <div className="card-actions absolute bottom-0">
+        <div className="absolute bottom-5 card-actions">
           <button
-            className="btn btn-primary my-4 text-secondary w-48"
+            className="w-48 btn btn-primary text-secondary hover:bg-accent hover:text-primary hover:border-none"
             onClick={handleChangeName}
           >
             Change Name

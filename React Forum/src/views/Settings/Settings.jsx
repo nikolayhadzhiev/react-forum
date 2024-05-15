@@ -67,53 +67,53 @@ export default function Settings() {
   }
 
   return (
-    <div className="flex-col">
+    <div className="flex-col text-primary">
       <div className="flex flex-row min-h-screen">
-        <div className="flex flex-col mx-4 bg-secondary w-108 shadow shadow-xl rounded-box mt-16 h-full">
-          <div className="flex flex-row border border-primary w-3/3 rounded-xl mx-4 m-2">
+        <div className="flex flex-col h-full mx-4 mt-16 shadow-xl bg-secondary w-108 rounded-box">
+          <div className="flex flex-row items-center justify-start px-4 m-2 mx-4 space-x-4 border drop-shadow-xl w-3/3 rounded-xl">
             <button
-              className="btn bg-primary border-none w-40 mx-6 my-4 text-secondary"
+              className="w-40 my-4 border-none btn bg-primary text-secondary hover:bg-accent hover:text-primary"
               onClick={toggleChangeName}
             >
               Change Name
             </button>
-            <p className="mx-4 my-6 text-primary underline">
+            <p className="block p-0 m-0 font-bold text-primary">
               {userData?.firstName} {userData?.lastName}
             </p>
           </div>
-          <div className="flex flex-row border border-primary w-3/3 rounded-xl mx-4 my-2">
+          <div className="flex flex-row items-center justify-start px-4 m-2 mx-4 space-x-4 border drop-shadow-xl w-3/3 rounded-xl">
             <button
-              className="btn bg-primary border-none w-40 mx-6 my-4 text-secondary"
+              className="w-40 my-4 border-none btn bg-primary text-secondary hover:bg-accent hover:text-primary"
               onClick={toggleChangeEmailForm}
             >
               change Email
             </button>
-            <p className="mx-4 my-6 text-primary underline">{user.email}</p>
+            <p className="block p-0 m-0 font-bold text-primary">{user.email}</p>
           </div>
           {userData.role === 'admin' && (
-            <div className="flex flex-row border border-primary w-3/3 rounded-xl mx-4 m-2">
+            <div className="flex flex-row items-center justify-start px-4 m-2 mx-4 space-x-4 border drop-shadow-xl w-3/3 rounded-xl">
               <button
-                className="btn bg-primary border-none w-40 mx-6 my-4 text-secondary"
+                className="w-40 my-4 leading-4 border-none btn bg-primary text-secondary hover:bg-accent hover:text-primary"
                 onClick={toggleBecomeAdmin}
               >
                 Change / Add phone number
               </button>
-              <p className="mx-4 my-6 text-primary underline">
+              <p className="mx-4 my-6 underline text-primary">
                 {userData?.phoneNumber}
               </p>
             </div>
           )}
-          <div className="flex flex-row border border-primary w-3/3 rounded-xl mx-4 my-2">
+          <div className="flex flex-row items-center justify-start px-4 m-2 mx-4 space-x-4 border drop-shadow-xl w-3/3 rounded-xl">
             <button
-              className="btn bg-primary border-none w-40 mx-6 my-4 text-secondary"
+              className="w-40 my-4 leading-4 border-none btn bg-primary text-secondary hover:bg-accent hover:text-primary"
               onClick={toggleChangePasswordForm}
             >
               change password
             </button>
           </div>
-          <div className="flex flex-row border border-primary w-3/3 rounded-xl mx-4 m-2">
+          <div className="flex flex-row items-center justify-start px-4 m-2 mx-4 space-x-4 border drop-shadow-xl w-3/3 rounded-xl">
             <button
-              className="btn bg-primary border-none w-40 mx-6 my-4 text-secondary"
+              className="w-40 my-4 leading-4 border-none btn bg-primary text-secondary hover:bg-accent hover:text-primary"
               onClick={toggleChangeProfilePicture}
             >
               Change Profile Picture

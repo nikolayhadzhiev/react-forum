@@ -78,13 +78,13 @@ const ChangeProfilePicture = () => {
   };
 
   const dragOverStyle = dragging
-    ? { border: '2px dashed blue', borderRadius: '15px' }
+    ? { border: '2px dashed #0A2A4C', borderRadius: '15px' }
     : {};
 
   return (
-    <div className="card w-1/2 bg-secondary shadow-2xl h-96 mx-48 my-16 items-center">
+    <div className="w-1/2 mx-24 my-16 border shadow-xl card bg-secondary h-96 text-primary">
       <div
-        className="card-body items-center text-center align-center h-max"
+        className="flex flex-col items-center justify-between text-center card-body h-max"
         onClick={openFileDialog}
         onDragEnter={handleDragEnter}
         onDragOver={handleDragEnter}
@@ -92,17 +92,25 @@ const ChangeProfilePicture = () => {
         onDrop={handleDrop}
         style={{ ...dragOverStyle, padding: '20px', cursor: 'pointer' }}
       >
-        <h2 className="card-title text-primary">Change your Profile Picture</h2>
-        <div className="card-actions items-center justify-center">
+        <h2 className="pt-4 font-bold uppercase card-title text-primary">
+          Change your Profile Picture
+        </h2>
+        <div className="items-center justify-center card-actions">
           <input
             type="file"
             onChange={handleImageChange}
             style={{ display: 'none' }}
             ref={fileInputRef}
-            className="align-center justify-center text-primary"
+            className="justify-center align-center text-primary"
           />
           {!previewImg && (
-            <div className="text-primary my-4 h-32 flex items-center justify-center">
+            <div
+              className={`flex items-center justify-center h-32 p-8 mb-4 italic border-2 rounded-xl text-primary border-primary ${
+                dragging
+                  ? 'border-solid bg-primary text-white'
+                  : 'border-dashed'
+              }`}
+            >
               Drag and Drop or click to upload a file!
             </div>
           )}
@@ -110,13 +118,13 @@ const ChangeProfilePicture = () => {
             <img src={previewImg} alt="Preview" style={{ width: '200px' }} />
           )}
         </div>
+        <button
+          className="w-48 btn btn-primary text-secondary hover:bg-accent hover:text-primary hover:border-none"
+          onClick={handleUpload}
+        >
+          Change Profile Picture
+        </button>
       </div>
-      <button
-        className="btn btn-primary my-4 text-secondary w-48 absolute bottom-0"
-        onClick={handleUpload}
-      >
-        Change Profile Picture
-      </button>
       <ToastContainer />
     </div>
   );

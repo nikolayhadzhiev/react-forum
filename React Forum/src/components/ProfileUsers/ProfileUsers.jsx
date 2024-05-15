@@ -158,7 +158,7 @@ const ProfileUsers = () => {
           />
         </div>
       </div>
-      <div className="flex flex-col items-center justify-center max-w-6xl mx-48 mb-10 border rounded-md shadow-2xl bg-secondary text-primary px-42 border-primary max-h-max">
+      <div className="flex flex-col items-center justify-center max-w-6xl mx-48 mb-10 rounded-md shadow-2xl bg-secondary text-primary px-42 max-h-max">
         {/* Table with the users */}
         <div className="w-full max-w-6xl overflow-x-auto shadow-md sm:rounded-lg">
           <table className="w-full text-sm text-left text-primary">

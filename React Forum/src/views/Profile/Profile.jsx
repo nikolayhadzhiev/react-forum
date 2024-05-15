@@ -16,9 +16,14 @@ const Profile = () => {
   useEffect(() => {
     listAll(ref(imageDb, `Profile pictures`)).then((images) => {
       images.items.forEach((val) => {
-        getDownloadURL(val).then((url) => {
-          setImgUrl((data) => [...data, url]);
-        });
+        const imagePathArray = val.name.split('/');
+        const imageUsername = imagePathArray[0];
+
+        if (imageUsername === userData?.handle) {
+          getDownloadURL(val).then((url) => {
+            setImgUrl((data) => [...data, url]);
+          });
+        }
       });
     });
 
@@ -48,7 +53,7 @@ const Profile = () => {
 
   return (
     <div className="flex flex-col items-center min-h-screen p-4">
-      <div className="flex flex-col justify-center h-48 px-2 mt-4 space-y-2 border divide-y rounded-md drop-shadow divide-primary/25 min-w-max bg-secondary align-center w-96 basis 1/2">
+      <div className="flex flex-col justify-center h-48 px-2 mt-4 mb-8 space-y-2 border divide-y rounded-md drop-shadow divide-primary/25 min-w-max bg-secondary align-center w-96 basis 1/2">
         <div className="rounded-full w-14">
           <div className="items-center p-2 avatar placeholder">
             <div
@@ -91,8 +96,8 @@ const Profile = () => {
         </div>
       </div>
       <div>
-        {userData?.role === 'admin' ? (
-          <div className="flex flex-row my-8">
+        {userData?.role === 'admin' && (
+          <div className="flex flex-row mb-8">
             <div>
               <button
                 onClick={handleMyPostsClick}
@@ -110,8 +115,6 @@ const Profile = () => {
               </button>
             </div>
           </div>
-        ) : (
-          showMyPosts && <ProfilePosts />
         )}
       </div>
       {showMyPosts && <ProfilePosts />}
