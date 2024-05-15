@@ -83,10 +83,10 @@ const SinglePost = ({
       >
         {title}
       </th>
-      <td className="px-6 py-4">
+      <td className="p-4">
         <div className="flex items-center">
           <div
-            className={`grid items-center justify-center place-content-center w-12 h-12 mr-2 rounded-full shadow-2xl text-secondary ${
+            className={`flex items-center justify-center rounded-full text-secondary shadow-2xl mr-2 w-12 h-12 ${
               imgUrl.length <= 0 && 'bg-primary'
             }`}
           >
@@ -94,7 +94,7 @@ const SinglePost = ({
               <img
                 src={imgUrl[0]}
                 alt="Profile"
-                className="object-cover w-12 h-12 rounded-full"
+                className="object-cover w-full h-full rounded-full"
               />
             ) : (
               <span className="flex items-center justify-center w-full h-full p-2 text-xl font-bold">
