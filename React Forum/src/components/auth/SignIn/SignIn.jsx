@@ -97,17 +97,17 @@ const SignIn = () => {
 
   return (
     <>
-      <div className="min-h-screen flex flex-col mt-12 mb-12">
+      <div className="flex flex-col min-h-screen mt-12 mb-12">
         <div className="flex flex-col items-center justify-center">
           <img
             src={joinImg}
-            className="w-80 h-80 mb-8"
+            className="mb-8 w-80 h-80"
             alt="Sign in the React Community"
           />
-          <h1 className="text-4xl font-bold text-primary mb-2">
-            Log In & Master React Development Effortlessly
+          <h1 className="mb-2 text-4xl font-bold text-primary">
+            Sign In & Master React Development Effortlessly
           </h1>
-          <p className=" mb-6 text-primary">
+          <p className="mb-6  text-primary">
             Access the forum to unlock React expertise with ease!
           </p>
           <hr
@@ -117,20 +117,20 @@ const SignIn = () => {
               marginBottom: '50px',
             }}
           />
-          <div className="signin-wrapper w-full max-w-xl">
+          <div className="w-full max-w-xl signin-wrapper">
             <form
-              className="form bg-white shadow-xl border-solid border-2 rounded-lg px-8 pt-6 pb-8 mb-4"
+              className="px-8 pt-6 pb-8 mb-4 bg-white border-2 border-solid rounded-lg shadow-xl form"
               onSubmit={onLogin}
             >
               <div className="mb-6">
                 <label
                   htmlFor="email"
-                  className="block text-gray-700 text-sm font-bold mb-2"
+                  className="block mb-2 text-sm font-bold text-gray-700"
                 >
                   Email<span className="text-red-500"> ✱</span>
                 </label>
                 <input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                   type="email"
                   name="email"
                   id="email"
@@ -140,16 +140,16 @@ const SignIn = () => {
                   required
                 />
               </div>
-              <div className="mb-16 relative">
+              <div className="relative mb-16">
                 <label
                   htmlFor="password"
-                  className="block text-gray-700 text-sm font-bold mb-2"
+                  className="block mb-2 text-sm font-bold text-gray-700"
                 >
                   Password<span className="text-red-500"> ✱</span>
                 </label>
                 <div className="flex items-center">
                   <input
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                     type={showPassword ? 'text' : 'password'}
                     name="password"
                     id="password"
@@ -161,7 +161,7 @@ const SignIn = () => {
                   <button
                     type="button"
                     onClick={handleClickShowPassword}
-                    className="ml-2 absolute right-3 top-8"
+                    className="absolute ml-2 right-3 top-8"
                   >
                     {showPassword ? (
                       <img
@@ -181,13 +181,13 @@ const SignIn = () => {
               </div>
               <div className="flex items-center justify-between">
                 <button
-                  className="bg-accent hover:bg-primary text-primary hover:text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  className="px-4 py-2 font-bold rounded bg-accent hover:bg-primary text-primary hover:text-white focus:outline-none focus:shadow-outline"
                   disabled={isLoading}
                 >
                   {isLoading ? 'Logging In...' : 'Sign In'}{' '}
                 </button>
                 <NavLink to="/forgot-password">
-                  <span className="inline-block align-baseline font-bold text-sm text-primary hover:text-accent cursor-pointer">
+                  <span className="inline-block text-sm font-bold align-baseline cursor-pointer text-primary hover:text-accent">
                     Forgot Password?
                   </span>
                 </NavLink>

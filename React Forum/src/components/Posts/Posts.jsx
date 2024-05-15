@@ -38,7 +38,6 @@ const Posts = () => {
       try {
         const allPosts = await getAllPosts();
         setPosts(allPosts);
-        console.log('');
       } catch (error) {
         console.error('Error fetching posts:', error.message);
       } finally {

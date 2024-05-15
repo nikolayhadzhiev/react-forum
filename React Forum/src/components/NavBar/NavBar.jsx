@@ -37,7 +37,7 @@ export default function NavBar() {
         }
       });
     });
-  }, []);
+  }, [userData?.handle, user]);
 
   const onLogout = () => {
     logoutUser().then(() => {
@@ -45,9 +45,10 @@ export default function NavBar() {
         user: null,
         userData: null,
       });
+      setImgUrl([]);
     });
     toast.success(`See you soon, ${userData.firstName} ${userData.lastName}!`, {
-      autoClose: 3000,
+      autoClose: 2000,
       className: 'font-bold',
     });
   };
@@ -175,7 +176,7 @@ export default function NavBar() {
                     {user === null && (
                       <NavLink to="/signin" className="navigation-link">
                         <button className="w-24 h-10 text-sm font-bold border-none text-primary bg-accent btn hover:bg-primary hover:text-white min-w-min">
-                          Log In
+                          Sign In
                         </button>
                       </NavLink>
                     )}

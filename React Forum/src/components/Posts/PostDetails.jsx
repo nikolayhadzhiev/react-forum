@@ -76,7 +76,6 @@ const PostDetails = () => {
   }, [postId, post?.likedPosts]);
 
   const handleClickPostLike = async () => {
-    console.log(isLiked);
     try {
       setIsHeartScaled(true);
       if (isLiked) {

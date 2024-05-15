@@ -13,10 +13,12 @@ const ProfilePosts = () => {
       getPostsByAuthor(userData.handle)
         .then((posts) => {
           setUserPosts(posts);
-          console.log(posts);
         })
         .catch((error) => {
-          console.error('Error getting posts', error.message);
+          toast.error('Error getting posts!', {
+            autoClose: 3000,
+            className: 'font-bold',
+          });
         });
     }
   }, [userData?.handle]);

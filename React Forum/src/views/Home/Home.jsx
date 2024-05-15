@@ -35,13 +35,6 @@ export default function Home() {
         user: null,
         userData: null,
       });
-      toast.success(
-        `See you soon, ${userData.firstName} ${userData.lastName}`,
-        {
-          autoClose: 3000,
-          className: 'font-bold',
-        }
-      );
     });
   };
 
@@ -66,12 +59,12 @@ export default function Home() {
 
   return (
     <>
-      <div className="min-h-screen flex flex-col">
+      <div className="flex flex-col min-h-screen">
         <div className="w-full h-100% bg-primary flex items-center justify-center py-10">
-          <div className="text-white w-1/2">
+          <div className="w-1/2 text-white">
             <div className="mr-20">
-              <div className="border-l-8 border-solid border-white pl-4 mb-2">
-                <h1 className="text-6xl font-bold mb-2 tracking-tight">
+              <div className="pl-4 mb-2 border-l-8 border-white border-solid">
+                <h1 className="mb-2 text-6xl font-bold tracking-tight">
                   {userData ? (
                     <>
                       <div>
@@ -86,7 +79,7 @@ export default function Home() {
                   to the "React is Not Hard" Forum!
                 </h3>
               </div>
-              <p className="py-3 pl-6 text-xl mb-6 font-light tracking-tight">
+              <p className="py-3 pl-6 mb-6 text-xl font-light tracking-tight">
                 Whether you're just starting your React journey or you're a
                 seasoned pro, this forum is here to help you{' '}
                 <span className="font-bold">
@@ -97,20 +90,20 @@ export default function Home() {
               </p>
               {user === null ? (
                 <NavLink to="/register" className="navigation-link">
-                  <button className="btn rounded-full bg-accent hover:bg-white text-primary hover:text-primary min-w-min text-lg font-bold border-none ml-6  tracking-tight">
+                  <button className="ml-6 text-lg font-bold tracking-tight border-none rounded-full btn bg-accent hover:bg-white text-primary hover:text-primary min-w-min">
                     SIGN UP NOW
                   </button>
                 </NavLink>
               ) : (
                 <NavLink to="/" className="navigation-link" onClick={onLogout}>
-                  <button className="btn rounded-full bg-accent hover:bg-white text-primary hover:text-primary min-w-min w-36 text-lg font-bold border-none ml-6  tracking-tight">
+                  <button className="ml-6 text-lg font-bold tracking-tight border-none rounded-full btn bg-accent hover:bg-white text-primary hover:text-primary min-w-min w-36">
                     Log Out
                   </button>
                 </NavLink>
               )}
             </div>
           </div>
-          <div className="bg-white w-96 h-96 ml-10 my-10 rounded-xl p-5 flex items-center justify-center">
+          <div className="flex items-center justify-center p-5 my-10 ml-10 bg-white w-96 h-96 rounded-xl">
             {/*<img src={ReactLogo} />*/}
             <div className="circles">
               <div></div>
@@ -120,8 +113,8 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="w-full h-80 bg-white flex items-start justify-center">
-          <div className="mt-20 flex items-center justify-center text-primary">
+        <div className="flex items-start justify-center w-full bg-white h-80">
+          <div className="flex items-center justify-center mt-20 text-primary">
             <div className="flex flex-col items-center justify-center mr-36">
               <span className="font-bold text-8xl">{registeredUsersCount}</span>
               <p className="text-2xl tracking-wide">Registered Users</p>
@@ -142,16 +135,16 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="flex-grow bg-primary pt-10 pb-20">
-          <div className="flex bg-primary justify-center">
-            <div className="flex flex-col justify-center items-center">
-              <div className="text-white font-bold text-6xl my-10 tracking-tight">
+        <div className="flex-grow pt-10 pb-20 bg-primary">
+          <div className="flex justify-center bg-primary">
+            <div className="flex flex-col items-center justify-center">
+              <div className="my-10 text-6xl font-bold tracking-tight text-white">
                 MAIN FORUM FEATURES
               </div>
               <div className="flex">
-                <div className="card w-96 h-56 bg-white m-5 text-center border-b-8 border-accent">
-                  <div className="card-body flex flex-col items-center">
-                    <h2 className="card-title text-primary font-bold">
+                <div className="h-56 m-5 text-center bg-white border-b-8 card w-96 border-accent">
+                  <div className="flex flex-col items-center card-body">
+                    <h2 className="font-bold card-title text-primary">
                       Anonymous Exploration
                     </h2>
                     <hr
@@ -163,13 +156,13 @@ export default function Home() {
                     />
                     <p className="text-primary text-m h-38 font-thing">
                       Curious about [Your Chosen Topic]? Explore posts, ideas,
-                      and discussions without the need to log in.
+                      and discussions without the need to sign in.
                     </p>
                   </div>
                 </div>
-                <div className="card w-96 h-56 bg-white m-5 text-center border-b-8 border-accent">
-                  <div className="card-body flex flex-col items-center">
-                    <h2 className="card-title text-primary font-bold">
+                <div className="h-56 m-5 text-center bg-white border-b-8 card w-96 border-accent">
+                  <div className="flex flex-col items-center card-body">
+                    <h2 className="font-bold card-title text-primary">
                       User Registration
                     </h2>
                     <hr
@@ -185,9 +178,9 @@ export default function Home() {
                     </p>
                   </div>
                 </div>
-                <div className="card w-96 h-56 bg-white m-5 text-center border-b-8 border-accent">
-                  <div className="card-body flex flex-col items-center">
-                    <h2 className="card-title text-primary font-bold">
+                <div className="h-56 m-5 text-center bg-white border-b-8 card w-96 border-accent">
+                  <div className="flex flex-col items-center card-body">
+                    <h2 className="font-bold card-title text-primary">
                       Top 10 Posts
                     </h2>
                     <hr
@@ -206,12 +199,12 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="flex bg-primary justify-center">
-            <div className="flex flex-col justify-center items-center">
+          <div className="flex justify-center bg-primary">
+            <div className="flex flex-col items-center justify-center">
               <div className="flex">
-                <div className="card w-96 h-56 bg-white m-5 text-center border-b-8 border-accent">
-                  <div className="card-body flex flex-col items-center">
-                    <h2 className="card-title text-primary font-bold">
+                <div className="h-56 m-5 text-center bg-white border-b-8 card w-96 border-accent">
+                  <div className="flex flex-col items-center card-body">
+                    <h2 className="font-bold card-title text-primary">
                       Personalized Profiles
                     </h2>
                     <hr
@@ -228,9 +221,9 @@ export default function Home() {
                     </p>
                   </div>
                 </div>
-                <div className="card w-96 h-56 bg-white m-5 text-center border-b-8 border-accent">
-                  <div className="card-body flex flex-col items-center">
-                    <h2 className="card-title text-primary font-bold">
+                <div className="h-56 m-5 text-center bg-white border-b-8 card w-96 border-accent">
+                  <div className="flex flex-col items-center card-body">
+                    <h2 className="font-bold card-title text-primary">
                       Create & Comment
                     </h2>
                     <hr
@@ -246,9 +239,9 @@ export default function Home() {
                     </p>
                   </div>
                 </div>
-                <div className="card w-96 h-56 bg-white m-5 text-center border-b-8 border-accent">
-                  <div className="card-body flex flex-col items-center">
-                    <h2 className="card-title text-primary font-bold">
+                <div className="h-56 m-5 text-center bg-white border-b-8 card w-96 border-accent">
+                  <div className="flex flex-col items-center card-body">
+                    <h2 className="font-bold card-title text-primary">
                       Like & Dislike
                     </h2>
                     <hr

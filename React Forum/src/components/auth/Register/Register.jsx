@@ -208,14 +208,14 @@ const Register = () => {
 
   return (
     <>
-      <div className="min-h-screen flex flex-col mb-12">
+      <div className="flex flex-col min-h-screen mb-12">
         <div className="flex flex-col items-center justify-center">
           <img
             src={joinImg}
-            className="w-96 h-96 mb-2"
+            className="mb-2 w-96 h-96"
             alt="Join the React Community"
           />
-          <h1 className="text-4xl font-bold text-primary mb-2">
+          <h1 className="mb-2 text-4xl font-bold text-primary">
             Connect, Share & Learn
           </h1>
           <p className="mb-6 text-primary">
@@ -229,21 +229,21 @@ const Register = () => {
               marginBottom: '50px',
             }}
           />
-          <div className="signin-wrapper w-full max-w-xl">
+          <div className="w-full max-w-xl signin-wrapper">
             <form
-              className="form bg-white shadow-xl border-solid border-2 rounded-lg px-8 pt-6 pb-8 mb-14"
+              className="px-8 pt-6 pb-8 bg-white border-2 border-solid rounded-lg shadow-xl form mb-14"
               onSubmit={onRegister}
             >
-              <div className="mb-6 flex">
-                <div className="mr-2 w-1/2">
+              <div className="flex mb-6">
+                <div className="w-1/2 mr-2">
                   <label
                     htmlFor="firstName"
-                    className="block text-gray-700 text-sm font-bold mb-2"
+                    className="block mb-2 text-sm font-bold text-gray-700"
                   >
                     First Name<span className="text-red-500"> ✱</span>
                   </label>
                   <input
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                     type="text"
                     name="firstName"
                     id="firstName"
@@ -253,15 +253,15 @@ const Register = () => {
                     required
                   />
                 </div>
-                <div className="ml-2 w-1/2">
+                <div className="w-1/2 ml-2">
                   <label
                     htmlFor="lastName"
-                    className="block text-gray-700 text-sm font-bold mb-2"
+                    className="block mb-2 text-sm font-bold text-gray-700"
                   >
                     Last Name<span className="text-red-500"> ✱</span>
                   </label>
                   <input
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                     type="text"
                     name="lastName"
                     id="lastName"
@@ -275,12 +275,12 @@ const Register = () => {
               <div className="mb-6">
                 <label
                   htmlFor="phoneNumber"
-                  className="block text-gray-700 text-sm font-bold mb-2"
+                  className="block mb-2 text-sm font-bold text-gray-700"
                 >
                   Phone Number
                 </label>
                 <input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                   type="text"
                   name="phoneNumber"
                   id="phoneNumber"
@@ -292,12 +292,12 @@ const Register = () => {
               <div className="mb-6">
                 <label
                   htmlFor="email"
-                  className="block text-gray-700 text-sm font-bold mb-2"
+                  className="block mb-2 text-sm font-bold text-gray-700"
                 >
                   Email<span className="text-red-500"> ✱</span>
                 </label>
                 <input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                   type="email"
                   name="email"
                   id="email"
@@ -310,12 +310,12 @@ const Register = () => {
               <div className="mb-6">
                 <label
                   htmlFor="handle"
-                  className="block text-gray-700 text-sm font-bold mb-2"
+                  className="block mb-2 text-sm font-bold text-gray-700"
                 >
                   Username<span className="text-red-500"> ✱</span>
                 </label>
                 <input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                   type="text"
                   name="handle"
                   id="handle"
@@ -325,15 +325,15 @@ const Register = () => {
                   required
                 />
               </div>
-              <div className="mb-6 relative">
+              <div className="relative mb-6">
                 <label
                   htmlFor="password"
-                  className="block text-gray-700 text-sm font-bold mb-2"
+                  className="block mb-2 text-sm font-bold text-gray-700"
                 >
                   Password<span className="text-red-500"> ✱</span>
                 </label>
                 <input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-12"
+                  className="w-full px-3 py-2 mb-12 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                   type={showPassword ? 'text' : 'password'}
                   name="password"
                   id="password"
@@ -345,7 +345,7 @@ const Register = () => {
                 <button
                   type="button"
                   onClick={handleClickShowPassword}
-                  className="ml-2 absolute right-3 top-8"
+                  className="absolute ml-2 right-3 top-8"
                 >
                   {showPassword ? (
                     <img src={hidden} className="w-7 h-7" alt="Hide Password" />
@@ -360,17 +360,17 @@ const Register = () => {
               </div>
               <div className="flex items-center justify-between">
                 <button
-                  className="bg-accent hover:bg-primary text-primary hover:text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  className="px-4 py-2 font-bold rounded bg-accent hover:bg-primary text-primary hover:text-white focus:outline-none focus:shadow-outline"
                   disabled={isLoading}
                 >
                   {isLoading ? 'Registering...' : 'Register'}{' '}
                 </button>
                 <button
-                  className="bg-accent hover:bg-primary text-primary hover:text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  className="px-4 py-2 font-bold bg-transparent text-primary hover:text-accent focus:outline-none focus:shadow-outline"
                   disabled={isLoading}
                   onClick={() => navigate('/signin')}
                 >
-                  Log In
+                  Sign In
                 </button>
               </div>
             </form>

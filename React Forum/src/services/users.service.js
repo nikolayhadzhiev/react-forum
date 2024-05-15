@@ -79,13 +79,9 @@ export const blockUser = async (handle) => {
         ...userSnapshot.val(),
         isBlocked: true,
       });
-
-      console.log(`User with handle ${handle} blocked successfully.`);
-    } else {
-      console.log(`User with handle ${handle} not found.`);
     }
   } catch (error) {
-    console.error('Error blocking user:', error.message);
+    throw new Error('Error blocking user!');
   }
 };
 
@@ -99,13 +95,9 @@ export const unblockUser = async (handle) => {
         ...userSnapshot.val(),
         isBlocked: false,
       });
-
-      console.log(`User with handle ${handle} unblocked successfully.`);
-    } else {
-      console.log(`User with handle ${handle} not found.`);
     }
   } catch (error) {
-    console.error('Error unblocking user:', error.message);
+    throw new Error('Error unblocking user!');
   }
 };
 
@@ -119,10 +111,6 @@ export const makeUserAdmin = async (handle) => {
         ...userSnapshot.val(),
         role: 'admin',
       });
-
-      console.log(`User with handle ${handle} is made admin successfully.`);
-    } else {
-      console.log(`User with handle ${handle} not found.`);
     }
   } catch (error) {
     console.error('Error making user admin:', error.message);
@@ -139,10 +127,6 @@ export const revokeUserAdminFunctions = async (handle) => {
         ...userSnapshot.val(),
         role: 'user',
       });
-
-      console.log(`User with handle ${handle} is revoked successfully.`);
-    } else {
-      console.log(`User with handle ${handle} not found.`);
     }
   } catch (error) {
     console.error('Error revoking user:', error.message);

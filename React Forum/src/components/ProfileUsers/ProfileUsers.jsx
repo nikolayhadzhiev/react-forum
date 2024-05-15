@@ -9,6 +9,7 @@ import {
 } from '../../services/users.service';
 import { listAll, ref, getDownloadURL } from 'firebase/storage';
 import { imageDb } from '../../config/firebase-config';
+import { toast } from 'react-toastify';
 // import { format } from 'date-fns';
 
 const ProfileUsers = () => {
@@ -68,7 +69,10 @@ const ProfileUsers = () => {
         fetchAllUsers();
       })
       .catch((error) => {
-        console.error(error);
+        toast.error(error, {
+          autoClose: 3000,
+          className: 'font-bold',
+        });
       });
   };
 
@@ -78,7 +82,10 @@ const ProfileUsers = () => {
         fetchAllUsers();
       })
       .catch((error) => {
-        console.error(error);
+        toast.error(error, {
+          autoClose: 3000,
+          className: 'font-bold',
+        });
       });
   };
 
