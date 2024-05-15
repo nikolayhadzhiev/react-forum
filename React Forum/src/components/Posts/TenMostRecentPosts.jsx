@@ -65,6 +65,7 @@ const TenMostRecentPosts = () => {
                       title={post.title}
                       createdOn={post.createdOn}
                       comments={post.comments}
+                      username={post.username}
                     />
                   ))}
                 </tbody>
