@@ -59,14 +59,14 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col mt-14 mb-14">
+    <div className="flex flex-col min-h-screen mt-14 mb-14">
       <div className="flex flex-col items-center justify-center">
         <img
           src={forgotPasswordImg}
-          className="w-1/4 h-1/4 mb-10"
+          className="w-1/4 mb-10 h-1/4"
           alt="Forgot Password"
         />
-        <h1 className="text-4xl font-bold text-primary mb-2">
+        <h1 className="mb-2 text-4xl font-bold text-primary">
           Forgot Your Password?
         </h1>
         <p className="mb-6 text-primary">
@@ -79,20 +79,20 @@ const ForgotPassword = () => {
             marginBottom: '50px',
           }}
         />
-        <div className="forgot-password-wrapper w-full lg:w-2/3 max-w-xl">
+        <div className="w-full max-w-xl forgot-password-wrapper lg:w-2/3">
           <form
-            className="form bg-white shadow-xl border-solid border-2 rounded-lg px-8 pt-6 pb-8 mb-4"
+            className="px-8 pt-6 pb-8 mb-4 bg-white border-2 border-solid rounded-lg shadow-xl form"
             onSubmit={handleResetPassword}
           >
             <div className="mb-6">
               <label
                 htmlFor="email"
-                className="block text-gray-700 text-sm font-bold mb-2"
+                className="block mb-2 text-sm font-bold text-gray-700"
               >
                 Email
               </label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-12"
+                className="w-full px-3 py-2 mb-12 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                 type="email"
                 name="email"
                 id="email"
@@ -103,13 +103,13 @@ const ForgotPassword = () => {
             </div>
             <div className="flex items-center justify-center lg:justify-between">
               <button
-                className="bg-accent hover:bg-primary text-primary hover:text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="px-4 py-2 font-bold rounded bg-accent hover:bg-primary text-primary hover:text-white focus:outline-none focus:shadow-outline"
                 disabled={isLoading}
               >
                 {isLoading ? 'Sending email...' : 'Reset Password'}
               </button>
               <button
-                className="bg-accent hover:bg-primary text-primary hover:text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="inline-block text-sm font-bold align-baseline cursor-pointer text-primary hover:text-accent"
                 disabled={isLoading}
                 onClick={() => navigate('/signin')}
               >

@@ -101,7 +101,7 @@ const SingleComment = ({ postId, commentId, onDelete }) => {
             <div className="inline-flex items-center text-sm font-semibold">
               {imgUrl.length > 0 ? (
                 <img
-                  className="w-12 h-12 mr-4 rounded-full"
+                  className="object-cover w-12 h-12 mr-4 rounded-full"
                   src={imgUrl[0]}
                   alt="Comment Author Avatar"
                 />
@@ -167,7 +167,9 @@ const SingleComment = ({ postId, commentId, onDelete }) => {
               required
             ></textarea>
           ) : (
-            <p className="mt-4 mb-2 ml-16 text-base">{comment.content}</p>
+            <p className="mt-4 mb-2 ml-16 text-base italic">
+              {comment.content}
+            </p>
           )}
         </div>
 

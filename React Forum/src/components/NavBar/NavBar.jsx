@@ -27,9 +27,14 @@ export default function NavBar() {
   useEffect(() => {
     listAll(ref(imageDb, `Profile pictures`)).then((images) => {
       images.items.forEach((val) => {
-        getDownloadURL(val).then((url) => {
-          setImgUrl((data) => [...data, url]);
-        });
+        const imagePathArray = val.name.split('/');
+        const imageUsername = imagePathArray[0];
+
+        if (imageUsername === userData?.handle) {
+          getDownloadURL(val).then((url) => {
+            setImgUrl((data) => [...data, url]);
+          });
+        }
       });
     });
   }, []);
@@ -162,14 +167,14 @@ export default function NavBar() {
                   <div className="justify-between">
                     {user === null && (
                       <NavLink to="/register" className="navigation-link">
-                        <button className="w-24 h-10 text-sm font-bold text-white border-none btn hover:bg-accent hover:text-primary min-w-min">
+                        <button className="w-24 h-10 text-sm font-bold border-none text-primary bg-accent btn hover:bg-primary hover:text-white min-w-min">
                           Sign Up
                         </button>
                       </NavLink>
                     )}
                     {user === null && (
                       <NavLink to="/signin" className="navigation-link">
-                        <button className="w-24 h-10 text-sm font-bold text-white border-none btn hover:bg-accent hover:text-primary min-w-min">
+                        <button className="w-24 h-10 text-sm font-bold border-none text-primary bg-accent btn hover:bg-primary hover:text-white min-w-min">
                           Log In
                         </button>
                       </NavLink>
