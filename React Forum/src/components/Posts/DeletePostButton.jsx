@@ -12,13 +12,18 @@ const DeletePostButton = ({ postId, postUsername, onDelete }) => {
     try {
       setIsLoading(true);
 
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
       await deletePost(postId);
       navigate('/posts');
       if (onDelete) onDelete(postId, postUsername);
+      toast.success('Post was deleted successfully!', {
+        className: 'font-bold',
+        autoClose: 3000,
+      });
     } catch (error) {
-      console.error('Error deleting post:', error.message);
+      toast.warning('Error deleting post!', {
+        className: 'font-bold',
+        autoClose: 3000,
+      });
     } finally {
       setIsLoading(false);
     }
@@ -27,7 +32,7 @@ const DeletePostButton = ({ postId, postUsername, onDelete }) => {
   return (
     <button
       onClick={handleDelete}
-      className="inline-flex items-center bg-red-600 text-white py-2 px-4 rounded-lg font-bold hover:scale-105 ml-4"
+      className="inline-flex items-center px-4 py-2 ml-4 font-bold text-white bg-red-600 rounded-lg hover:scale-105"
     >
       <svg
         aria-hidden="true"

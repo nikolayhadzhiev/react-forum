@@ -20,8 +20,15 @@ const CreateComment = ({ postId, comments, onCreateComment }) => {
         const newComment = await addComment(postId, author, commentContent);
         setCommentContent('');
         onCreateComment(newComment);
+        toast.success('Comment was added successfully!', {
+          className: 'font-bold',
+          autoClose: 3000,
+        });
       } catch (error) {
-        console.error('Error adding comment', error);
+        toast.warning('Error creating comment!', {
+          className: 'font-bold',
+          autoClose: 3000,
+        });
       }
     } else {
       toast.warning("A post can't have more than 5 comments!", {

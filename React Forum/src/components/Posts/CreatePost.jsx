@@ -77,8 +77,15 @@ const CreatePost = ({ onPostCreate, postsLength }) => {
         setTitle('');
         setContent('');
         onPostCreate(newPost);
+        toast.success('Post was created successfully!', {
+          className: 'font-bold',
+          autoClose: 3000,
+        });
       } catch (error) {
-        console.error('Error creating post:', error);
+        toast.warning('Error creating post!', {
+          className: 'font-bold',
+          autoClose: 3000,
+        });
       } finally {
         setIsLoading(false);
       }

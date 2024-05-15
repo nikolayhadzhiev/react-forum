@@ -58,8 +58,6 @@ const Posts = () => {
   const handlePostDeletion = (postId, postUsername) => {
     if (userData.handle === postUsername || userData.role === 'admin') {
       setPosts((prevPosts) => prevPosts.filter((post) => post.id !== postId));
-    } else {
-      console.error("You don't have permission to delete this post!");
     }
   };
 

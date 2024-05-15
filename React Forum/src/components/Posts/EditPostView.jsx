@@ -47,8 +47,6 @@ const EditPostView = () => {
 
     setIsLoading(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
     try {
       await updatePost(postId, {
         title: post.title,
@@ -56,8 +54,15 @@ const EditPostView = () => {
         lastUpdated: Date.now(),
       });
       navigate(-1);
+      toast.success('Post was edited successfully!', {
+        className: 'font-bold',
+        autoClose: 3000,
+      });
     } catch (error) {
-      console.error('Error updating post', error.message);
+      toast.warning('Error editing post!', {
+        className: 'font-bold',
+        autoClose: 3000,
+      });
     } finally {
       setIsLoading(false);
     }
@@ -65,10 +70,10 @@ const EditPostView = () => {
 
   return (
     <>
-      <div className="min-h-screen flex flex-col mt-12 mb-12">
+      <div className="flex flex-col min-h-screen mt-12 mb-12">
         <div className="items-center justify-center">
           <div className="flex flex-col items-center justify-center">
-            <div className="mb-4 text-3xl tracking-tight font-bold text-primary dark:text-white un">
+            <div className="mb-4 text-3xl font-bold tracking-tight text-primary dark:text-white un">
               EDIT POST
             </div>
             <hr
@@ -80,7 +85,7 @@ const EditPostView = () => {
             />
           </div>
           <form onSubmit={handleSubmit} className="mb-6 text-primary">
-            <div className="mb-6 flex flex-col items-center">
+            <div className="flex flex-col items-center mb-6">
               <label className="font-bold">Title:</label>
               <input
                 type="text"
@@ -91,7 +96,7 @@ const EditPostView = () => {
                 required
               />
             </div>
-            <div className="mb-6 flex flex-col items-center">
+            <div className="flex flex-col items-center mb-6">
               <label className="font-bold">Content:</label>
               <textarea
                 id="content"
@@ -105,13 +110,13 @@ const EditPostView = () => {
             <div className="flex items-center justify-center">
               <button
                 type="submit"
-                className="bg-accent text-primary py-2 px-4 rounded-lg font-bold hover:bg-primary hover:text-white mr-4"
+                className="px-4 py-2 mr-4 font-bold rounded-lg bg-accent text-primary hover:bg-primary hover:text-white"
               >
                 {isLoading ? 'Updating post...' : 'Update post'}
               </button>
               <button
                 type="button"
-                className="inline-flex items-center justify-center bg-accent text-primary py-2 px-4 rounded-lg font-bold hover:bg-primary hover:text-white"
+                className="inline-flex items-center justify-center px-4 py-2 font-bold rounded-lg bg-accent text-primary hover:bg-primary hover:text-white"
                 onClick={() => navigate(-1)}
               >
                 ⇐ Go back
